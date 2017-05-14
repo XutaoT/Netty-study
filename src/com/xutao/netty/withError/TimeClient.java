@@ -13,6 +13,11 @@ import java.util.logging.Logger;
 /**
  * Created by Tau Hsu on 2017/5/12.
  * TCP粘包
+ client initChannel..
+ Now is : BAD ORDER
+ BAD ORDER
+ ; the counter is :1
+ 说明服务端通过tcp传过来数据发生了粘包
  */
 public class TimeClient {
 
