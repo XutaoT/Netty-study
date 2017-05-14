@@ -12,6 +12,7 @@ import java.util.Date;
 
 /**
  * Created by Tau Hsu
+ * TCP粘包
  */
 public class TimeServer {
 
