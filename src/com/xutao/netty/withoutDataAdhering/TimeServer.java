@@ -61,6 +61,7 @@ class TimeServerHandler extends ChannelInboundHandlerAdapter{
 
     @Override
     public void channelRead
+
             (ChannelHandlerContext ctx, Object msg) throws Exception {
         String body = (String)msg;//直接就可使用String
         System.out.println("body length : " + body.length());
