@@ -45,8 +45,27 @@ public class SubReqServer {
         }
 
     }
+
+    public static void main(String[] args) throws Exception{
+        int port = 8080;
+        if(args != null && args.length > 0){
+            try{
+                port = Integer.valueOf(args[0]);
+            }catch (NumberFormatException e){
+                throw new RuntimeException("The input params must be integer !", e);
+            }
+        }
+        new SubReqServer().bind(port);
+    }
 }
 
 class SubReqServerHandler extends ChannelInboundHandlerAdapter{
+    @Override
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 
+    }
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+    }
 }
