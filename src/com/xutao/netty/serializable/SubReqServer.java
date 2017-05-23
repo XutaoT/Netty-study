@@ -62,10 +62,29 @@ public class SubReqServer {
 class SubReqServerHandler extends ChannelInboundHandlerAdapter{
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        SubscribeReq req = (SubscribeReq)msg;
+        if("xutao".equalsIgnoreCase(req.getUserName())){
+            System.out.println("Service accept client subscribe req : [" + req.toString() + "]");
+            ctx.writeAndFlush(resp(req.getSubReqID()));
+        }
+    }
 
+    private SubscribeResp resp(int subReqID){
+        SubscribeResp resp = new SubscribeResp();
+        resp.setSubReqID(subReqID);
+        resp.setRespCode(0);
+        resp.setDesc("Netty book order succeed, 3 days later, sent to the designated address");
+        return resp;
+    }
+
+    @Override
+    public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("server ReadComplete ...");
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        cause.printStackTrace();
+        ctx.close();
     }
 }
