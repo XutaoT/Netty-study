@@ -29,6 +29,7 @@ public class SubReqServer {
                         protected void initChannel(SocketChannel ch) throws Exception {
                             ch.pipeline().addLast(new ObjectDecoder(
                                     1024*1024,
+                                    //创建了一个线程安全的WeakReferenceMap对类加载器进行缓存
                                     ClassResolvers.weakCachingConcurrentResolver(this.getClass().getClassLoader())
                             ));
                             ch.pipeline().addLast(new ObjectEncoder());

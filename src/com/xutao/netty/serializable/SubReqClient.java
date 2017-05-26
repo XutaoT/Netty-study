@@ -23,6 +23,7 @@ public class SubReqClient {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
                             ch.pipeline().addLast(
+                                    //禁止对类加载器进行缓存
                                     new ObjectDecoder(1024, ClassResolvers.cacheDisabled(this.getClass().getClassLoader()))
                             );
                             ch.pipeline().addLast(new ObjectEncoder());
