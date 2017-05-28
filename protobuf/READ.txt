@@ -1,0 +1,26 @@
+ProtoBuf的官方下载包并不包含jar文件，需要用户自己configure/make….来自行编译。由于Windows上没有编译环境，就用了一个笨一点方法处理了。
+分别下载:
+protobuf-2.4.1.zip ProtoBuf的源文件（包含了C++/Java/Python）的源文件
+protoc-2.4.1-win32.zip 已经编译过的用于Windows平台的protoc命令（该命令用于将.proto文件转化为Java或C++源文件）。
+ 
+分别解析这两个文件，你可以在protoc-2.4.1-win32.zip解压后的文件中找到一个protoc.exe文件，将其copy到protobuf-2.4.1/src目录下，然后进入protobuf-2.4.1/java，执行：
+mvn install
+ 
+如果没有安装maven的话，可以在网上找一下maven的安装手册。
+编译完成后可以在protobuf-2.4.1/java/target目录中找到protobuf-2.4.1.jar文件.
+后记
+
+protobuf-2.4.1.zip里面同时包含了protoc和java等的源文件，如果按照官方教程来安装的话，就是先产生出protoc编译器，然后再生成jar包。由于mvn install同时包含了编译和测试过程，而测试代码又依赖于protoc编译器，所以就需要单独下载protoc编译器，并置于src目录下了。
+ 
+如果不需要验证编译结果（不执行单元测试），则可以如下：
+下载protobuf-2.4.1.zip并解压，进入到protobuf-2.4.1/java
+mvn install –Dmaven.test.skip=true
+这样就可以了。
+
+
+
+
+
+
+http://www.cnblogs.com/ungshow/archive/2011/12/27/2303257.html
+
